@@ -27,20 +27,20 @@ $sql = "SELECT i.name
         WHERE ri.recipe_id = $recipe_id";
 $result = mysqli_query($conn, $sql);
 $ingredients = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-// Display recipe data
-echo "<h1>{$recipe['title']}</h1>";
-echo "<p><strong>Category:</strong> {$recipe['category_name']}</p>";
-echo "<p><strong>Ingredients:</strong></p>";
-echo "<ul>";
-foreach ($ingredients as $ingredient) {
-    echo "<li>{$ingredient['name']}</li>";
-}
-echo "</ul>";
-echo "<p><strong>Instructions:</strong></p>";
-echo "<p>{$recipe['instructions']}</p>";
-
-// Close database connection
-mysqli_close($conn);
+mysqli_close($conn); // Close database connection
+?>
+<h1><?php echo $recipe['title']; ?></h1>
+<hr>
+<p><?php echo $recipe['instructions']; ?></p>
+<hr>
+<h2>Ingredients</h2>
+<ul>
+    <?php foreach ($ingredients as $ingredient): ?>
+        <li><?php echo $ingredient['name']; ?></li>
+    <?php endforeach; ?>
+</ul>
+<a href="edit_recipe.php?id=<?php echo $recipe_id; ?> " class="btn btn-primary" > Edit Recipe </a>
+<a href="delete_recipe.php?id=<?php echo $recipe_id; ?> " class="btn btn-danger" > Delete Recipe </a>
+<?php
 include 'footer.php';
 ?>
