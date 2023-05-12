@@ -1,7 +1,6 @@
 <?php
 // Establish database connection
-include 'credentials.php';
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname,3308);
+include 'db.php';
 
 // Check connection
 if (!$conn) {
@@ -19,7 +18,7 @@ $sql = "UPDATE recipe SET title='$title', instructions='$instructions', category
 $result = mysqli_query($conn, $sql);
 
 // Delete existing recipe_ingredients
-$sql = "DELETE FROM recipe_ingredient WHERE recipe_id=$id";
+$sql = "CALL delete_recipe_ingredient($recipe_id)";
 mysqli_query($conn, $sql);
 
 // Insert new recipe_ingredients
