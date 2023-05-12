@@ -1,9 +1,7 @@
 <?php
 include 'header.php';
 // Establish database connection
-include 'credentials.php';
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname,3308);
-
+include 'db.php';
 // Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
